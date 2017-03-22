@@ -10,83 +10,17 @@
 
 		<!--Cutomization-->
 		<link type="text/css" rel="stylesheet" href="css/styles.css"/>
-
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+		
+		<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+		
 		<!--JS-->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script>
-			// Code par Alexandre Guerville
-			function add_num(num)
-				{
-					if (document.getElementById("numero").value == 0 && num == 0)
-					{}
-					else
-					{
-						document.getElementById("rem").disabled = false;
-						document.getElementById("validate").disabled = false;
-						document.getElementById("numero").value += num;
-						document.getElementById("masse_saisie").innerHTML += num;
-					}
-				}
-			function rem_num()
-				{
-					document.getElementById("numero").value = document.getElementById("numero").value.slice(0, document.getElementById("numero").value.length - 1);
-					document.getElementById("masse_saisie").innerHTML = document.getElementById("numero").value;
-					if (document.getElementById("numero").value == "")
-					{
-						document.getElementById("rem").disabled = true;
-						document.getElementById("validate").disabled = true;
-					}
-				}
-			function add_comma()
-			{
-				var val = document.getElementById("numero").value;
-				document.getElementById("rem").disabled = false;
-				document.getElementById("validate").disabled = false;
-				if (val.search(",") < 0)
-				{
-					val += ",";
-					if (val.search(",") == 0)
-					{
-						val = "0,";
-					}
-				}
-				document.getElementById("numero").value = val;
-			}
-		</script>
-		<script>
-			// ENREGISTREMENT DE LA MASSE SAISIE DANS LA BDD
-			function save_masse() {
-				var masse = document.getElementById("numero").value;
-				var secteur = Number(localStorage.getItem("secteur"))+1;
-				$.post('http://www.souslesdechetslaplage.hk/save_masse.php', {'masse':'sldlpmsx'+secteur+'x'+masse}, function(data) {
-					
-				});
-				// Materialize.toast(message, displayLength, className, completeCallback);
-				Materialize.toast('MASSE ENREGISTREE', 3000) // 4000 is the duration of the toast
-				setTimeout(function(){window.location.href = 'index.html';}, 3000);
-			}
-		</script>		
-		<script>	
-			// VERIFICATION DU CODE D'ACTIVATION
-			function activation() {
-				/*
-				8czsc : 1 : Discovery Bay
-				9fdum : 2 : Peng Chau / Cheung Chau
-				3pt8z : 3 : Lamma
-				4id1a : 4 : Southern District
-				1r3xf : 5 : Sai Kung
-				9b9id : 6 : Tai Long Wan
-				*/
-				var code = document.getElementById("code").value;
-				if (code == '8czsc') localStorage.setItem("secteur", 0);
-				if (code == '9fdum') localStorage.setItem("secteur", 1);
-				if (code == '3pt8z') localStorage.setItem("secteur", 2);
-				if (code == '4id1a') localStorage.setItem("secteur", 3);
-				if (code == '1r3xf') localStorage.setItem("secteur", 4);
-				if (code == '9b9id') localStorage.setItem("secteur", 5);
-				window.location.href = 'index.html';
-			}			
-		</script>		
+	
+
+		
 		<script>	
 			function get_masse() {	
 				var secteur = Number(localStorage.getItem("secteur"))+1;
@@ -99,41 +33,16 @@
 			// INITIALISATION
 			function initialisation() {
 			
-				// Check internet connection
-				setInterval(function () {
-					connectionStatus = window.navigator.onLine ? 'online' : 'offline';
-					if (connectionStatus == 'offline') {
-						$('#alerte_connexion').css('display', 'block');
-						$('#saisie').css('display', 'none');
-						$('#enregistrer').css('display', 'none');
-						$('#activation').css('display', 'none');
-					}
-				}, 1000);
-
 				
 				// Secteur
 				var secteurs_array = ["Discovery Bay", "Peng Chau / Cheung Chau", "Lamma", "Southern District", "Sai Kung", "Tai Long Wan"];
 				document.getElementById("secteur").innerHTML = secteurs_array[localStorage.getItem("secteur")];
 								
-				// Init
-				// localStorage.clear();
-				if (localStorage.getItem("secteur") === null) {
-					$('#saisie').css('display', 'none');
-					$('#enregistrer').css('display', 'none');
-				} else {
-					$('#activation').css('display', 'none');
-				}
 				
-				get_masse();				
 
 			}	
 		</script>		
-		<script>
-			// MODAL INIT
-			$(document).ready(function(){
-				$('.modal').modal();
-			  });		
-		</script>		
+	
 		
 		<title></title>
 	</head>
@@ -145,86 +54,56 @@
 			<nav><div class="nav-wrapper" style="padding:10px 0px 0px 10px;background-color:#154777;"><img src="images/nav_app.png" width="300"></div></nav>	
 		</div>
 		
-		<!-- ALERT CONNEXION -->
-		<div id="alerte_connexion" style="display:none;text-align:center;">
-			<br />
-			<br />
-			<div><span style="color:#ff8f00;font-size:25px;font-weight:bold;">PAS DE CONNECTION INTERNET</span></div>
-			<br />
-			<div><a href="index.html" type="button" class="waves-effect waves-light btn blue-grey darken-2" style="height:50px;line-height:50px;" /><i class="large material-icons">loop</i></a></div>
-		</div>
-		
-		<!-- CODE D'ACTIVATION -->
-		<div id="activation" style="text-align:center;">
-			<br />
-			<br />
-			<label>CODE D'ACTIVATION</label>
-			<br />
-			<input type="text" id="code" class="affichage_masse" name="code" value="" style="width:300px;margin:10px;">
-			<br />
-			<input type="button" value="valider" onclick="activation()" class="waves-effect waves-light btn blue-grey darken-2" style="height:50px;line-height:50px;" />
-		</div>
-		
-		<!-- SAISIE -->
-		<div id="saisie" class="container">
+		<br />				
+
+		<div class="container">
 		
 			<div class="row" >
 				<div class="col s12">
 				
-					<div style="text-align:center;padding-top:20px;">
-						<span style="font-size:20px;font-weight:bold;;" id="secteur"></span>
-						<br />
-						<div id="masse_totale" style="height:30px;line-height:30px;"></div>
-					</div>
-				
-					<label>Masse en kg (arrondir au kg le plus proche)</label>
-					<input type="text" id="numero" class="affichage_masse" name="Number" value="" readonly>
-
 					<table>
 						<tr>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="1" onclick="add_num(1);">1</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="2" onclick="add_num(2);">2</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="3" onclick="add_num(3);">3</a></td>
-						</tr>
-						<tr>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="4" onclick="add_num(4);">4</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="5" onclick="add_num(5);">5</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="6" onclick="add_num(6);">6</a></td>
-						</tr>
-						<tr>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="7" onclick="add_num(7);">7</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="8" onclick="add_num(8);">8</a></td>
-							<td><a type="button" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" value="9" onclick="add_num(9);">9</a></td>
-						</tr>									
-						<tr>
-							<td><a type="button" value="0" id="num" class="waves-effect waves-light btn btn-num blue-grey lighten-2" onclick="add_num(0);">0</a></td>
-							<td></td>
-							<td><a type="button" id="rem" value="<" class="waves-effect waves-light btn btn-num blue-grey lighten-3" onclick="rem_num();"><</a></td>
+							<td><div id="instagram"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></div></td>
+							<td><div id="twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></div></td>
 						</tr>
 					</table>
+				
+					<div id="masse_totale">245845 kg</div>
+					
+					<table>
+						<tr>
+							<td class="secteur">DICOVERY BAY / LANTAU SUD</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>					
+						<tr>
+							<td class="secteur">PENG CHAU / PENG CHAU</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>					
+						<tr>
+							<td class="secteur">LAMMA</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>					
+						<tr>
+							<td class="secteur">SOUTHERN DISTRICT</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>					
+						<tr>
+							<td class="secteur">SAI KUNG</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>					
+						<tr>
+							<td class="secteur">TAI LONG WAN</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+						</tr>
+					<table>
+				
+
+
+				
+
+				
+
+
 
 				</div>
 			</div>	
 
 		</div><!-- container -->	
-		
-		<!-- Modal Structure -->
-		<div id="confirmer" class="modal" style="height:240px;width:250px;padding:10px;">
-			<div class="modal-content">
-				<div style="text-align:center;font-weight:bold;font-size:200%;">
-					<span id="masse_saisie"></span> kg
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="#!" onclick="save_masse()" class=" modal-action modal-close waves-effect waves-green btn-flat deep-orange darken-4" style="text-align:center;float:none;display:block;color:white;height:50px;line-height:50px;">confirmer</a>
-				<a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat blue-grey lighten-4" style="text-align:center;float:none;display:block;height:50px;line-height:50px;">annuler</a>
-			</div>
-		</div>
-		
-		<div id="enregistrer" style="z-index:1000;position:fixed;bottom:0;width:100%;padding:0px;">
-			<input disabled type="button" data-target="confirmer" id="validate" value="enregistrer" class="waves-effect waves-light btn blue-grey darken-2" style="width:100%;font-size:20px;font-weight:bold;padding-top:5px;height:80px;line-height:80px;border-radius:0px;" />
-		</div>		
-		
+				
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>		
 		<script type="text/javascript" src="js/init.js"></script>
