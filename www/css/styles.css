@@ -73,8 +73,14 @@ nav .button-collapse {
 	padding:10px;
 }
 
+#masse_totale span {
+	font-size:60%;
+	font-weight:bold;
+	color:#ecf0f1;
+}
 
-#twitter, #instagram {
+
+#twitter, #instagram, #site {
 	width:60px;
 	text-align:center;
 	margin:0px auto 0px auto;
@@ -92,9 +98,13 @@ nav .button-collapse {
 	background-color:#9b59b6;	
 }
 
+#site {
+	background-color:#c0392b;	
+}
+
 
 .secteur {
-    padding: 2px;
+    padding: 20px 2px 2px 2px;
     text-align: left;
     vertical-align: middle;
     border-radius: 2px;
@@ -103,7 +113,7 @@ nav .button-collapse {
 }
 
 .masse_secteur {
-    padding: 2px;
+    padding: 20px 2px 2px 2px;
     text-align: center;
     vertical-align: middle;
     border-radius: 2px;
