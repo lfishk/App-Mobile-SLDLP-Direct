@@ -23,18 +23,21 @@
 		
 		<script>	
 			function get_masses() {	
-				$.post('http://www.souslesdechetslaplage.hk/get_masse_app.php', {'masse':'x'}, function(data) {
-					alert(data[0]);
-					alert(data[1]);
-					alert(data[2]);
-					alert(data[3]);
-					document.getElementById("masse_totale").innerHTML = data[0];
-					document.getElementById("masse_secteur_1").innerHTML = data[1];
-					document.getElementById("masse_secteur_2").innerHTML = data[2];
-					document.getElementById("masse_secteur_3").innerHTML = data[3];
-					document.getElementById("masse_secteur_4").innerHTML = data[4];
-					document.getElementById("masse_secteur_5").innerHTML = data[5];
-					document.getElementById("masse_secteur_6").innerHTML = data[6];					
+				$.post('http://www.souslesdechetslaplage.hk/get_masse_direct.php', {'masse':'x'}, function(data) {
+					var masse = JSON.parse(data);
+					document.getElementById("masse_totale").innerHTML = masse[0];
+					document.getElementById("masse_secteur_1").innerHTML = masse[1];
+					document.getElementById("masse_secteur_2").innerHTML = masse[2];
+					document.getElementById("masse_secteur_3").innerHTML = masse[3];
+					document.getElementById("masse_secteur_4").innerHTML = masse[4];
+					document.getElementById("masse_secteur_5").innerHTML = masse[5];
+					document.getElementById("masse_secteur_6").innerHTML = masse[6];	
+					document.getElementById("masse_pp_secteur_1").innerHTML = masse[7];	
+					document.getElementById("masse_pp_secteur_2").innerHTML = masse[8];	
+					document.getElementById("masse_pp_secteur_3").innerHTML = masse[9];	
+					document.getElementById("masse_pp_secteur_4").innerHTML = masse[10];	
+					document.getElementById("masse_pp_secteur_5").innerHTML = masse[11];	
+					document.getElementById("masse_pp_secteur_6").innerHTML = masse[12];	
 				});			
 			}
 		</script>		
@@ -58,14 +61,14 @@
 		
 		<div class="container">
 		
-			<div class="row" >
+			<div class="row">
 				<div class="col s12">
 				
 					<table>
 						<tr>
-							<td><div id="instagram"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></div></td>
-							<td><div id="twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></div></td>
-							<td><div id="site"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></div></td>
+							<td><a href="#" onclick="window.open(encodeURI('https://www.fis.edu.hk/fr/'), '_blank', 'location=yes');" id="instagram"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a></td>
+							<td><a href="#" onclick="window.open(encodeURI('https://www.fis.edu.hk/fr/'), '_blank', 'location=yes');" id="twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></td>
+							<td><a href="#" onclick="window.open(encodeURI('https://www.fis.edu.hk/fr/'), '_blank', 'location=yes');" id="site"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></a></td>
 						</tr>
 					</table>
 				
@@ -73,22 +76,28 @@
 					
 					<table>
 						<tr>
-							<td class="secteur">DICOVERY BAY / LANTAU SUD</td><td class="masse_secteur"><span id="masse_secteur_1"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">DICOVERY BAY / LANTAU SUD</td>
+							<td class="masse_secteur"><span id="masse_secteur_1"></span> kg<br /><span id="masse_pp_secteur_1"></span> kg / pers</td>
 						</tr>					
 						<tr>
-							<td class="secteur">PENG CHAU / PENG CHAU</td><td class="masse_secteur"><span id="masse_secteur_2"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">PENG CHAU / PENG CHAU</td>
+							<td class="masse_secteur"><span id="masse_secteur_2"></span> kg<br /><span id="masse_pp_secteur_2"></span> kg / pers</td>
 						</tr>					
 						<tr>
-							<td class="secteur">LAMMA</td><td class="masse_secteur"><span id="masse_secteur_3"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">LAMMA</td>
+							<td class="masse_secteur"><span id="masse_secteur_3"></span> kg<br /><span id="masse_pp_secteur_3"></span> kg / pers</td>
 						</tr>					
 						<tr>
-							<td class="secteur">SOUTHERN DISTRICT</td><td class="masse_secteur"><span id="masse_secteur_4"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">SOUTHERN DISTRICT</td>
+							<td class="masse_secteur"><span id="masse_secteur_4"></span> kg<br /><span id="masse_pp_secteur_4"></span> kg / pers</td>
 						</tr>					
 						<tr>
-							<td class="secteur">SAI KUNG</td><td class="masse_secteur"><span id="masse_secteur_5"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">SAI KUNG</td>
+							<td class="masse_secteur"><span id="masse_secteur_5"></span> kg<br /><span id="masse_pp_secteur_5"></span> kg / pers</td>
 						</tr>					
 						<tr>
-							<td class="secteur">TAI LONG WAN</td><td class="masse_secteur"><span id="masse_secteur_6"></span> kg<br />1 kg / pers</td>
+							<td class="secteur">TAI LONG WAN</td>
+							<td class="masse_secteur"><span id="masse_secteur_6"></span> kg<br /><span id="masse_pp_secteur_6"></span> kg / pers</td>
 						</tr>
 					<table>
 				

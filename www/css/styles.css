@@ -88,6 +88,7 @@ nav .button-collapse {
 	color:white;
 	font-weight:bold;
 	padding:5px;
+	display:block;
 }
 
 #twitter {
