@@ -103,20 +103,54 @@ nav .button-collapse {
 	background-color:#c0392b;	
 }
 
+table
+{
+    border-collapse:separate;
+    border-spacing:0 10px;
+}
+
+tr td:first-child { border-top-left-radius: 4px; }
+tr td:first-child { border-top-right-radius: 0px; }
+tr td:last-child { border-top-right-radius: 4px; }
+tr td:last-child { border-top-left-radius: 0px; }
+tr td:first-child { border-bottom-left-radius: 4px; }
+tr td:first-child { border-bottom-right-radius: 0px; }
+tr td:last-child { border-bottom-right-radius: 4px; }
+tr td:last-child { border-bottom-left-radius: 0px; }
 
 .secteur {
-    padding: 20px 2px 2px 2px;
+    padding: 5px 5px 5px 15px;
     text-align: left;
     vertical-align: middle;
-    border-radius: 2px;
 	width:60%;
 	font-weight:bold;
+	background-color:#ecf0f1;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	color:#34495e;
+}
+
+.secteur_masse {
+    padding: 5px 5px 5px 5px;
+    text-align: center;
+    vertical-align: middle;
+	width:40%;
+	background-color:#e3e7e8;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	color:#bdc3c7;
 }
 
 .masse_secteur {
-    padding: 20px 2px 2px 2px;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 2px;
-	width:40%;
+	font-size:120%;
+	font-weight:bold;
+	color:#34495e;
 }
+
+.masse_secteur_pp {
+	font-size:90%;
+}
+	
+	
+	
+	
