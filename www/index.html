@@ -24,7 +24,10 @@
 		<script>	
 			function get_masses() {	
 				$.post('http://www.souslesdechetslaplage.hk/get_masse_app.php', {'masse':'x'}, function(data) {
+					alert(data[0]);
 					alert(data[1]);
+					alert(data[2]);
+					alert(data[3]);
 					document.getElementById("masse_totale").innerHTML = data[0];
 					document.getElementById("masse_secteur_1").innerHTML = data[1];
 					document.getElementById("masse_secteur_2").innerHTML = data[2];
@@ -66,7 +69,7 @@
 						</tr>
 					</table>
 				
-					<div><span id="masse_totale"><span>kg</span></div>
+					<div><span id="masse_totale"></span> kg</div>
 					
 					<table>
 						<tr>
