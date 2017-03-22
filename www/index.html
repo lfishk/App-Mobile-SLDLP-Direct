@@ -24,7 +24,7 @@
 		<script>	
 			function get_masse(n) {	
 				$.post('http://www.souslesdechetslaplage.hk/get_masse_app.php', {'masse':n}, function(data) {
-					alert(data);
+					alert(data[1]);
 				});			
 			}
 		</script>		
