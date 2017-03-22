@@ -22,24 +22,27 @@
 
 		
 		<script>	
-			function get_masse() {	
-				var secteur = Number(localStorage.getItem("secteur"))+1;
-				$.post('http://www.souslesdechetslaplage.hk/get_masse.php', {'secteur':secteur}, function(data) {
-					document.getElementById("masse_totale").innerHTML = data;
+			function get_masse(n) {	
+				$.post('http://www.souslesdechetslaplage.hk/get_masse_app.php', {'masse':n}, function(data) {
+					alert(data);
 				});			
 			}
 		</script>		
 		<script>	
 			// INITIALISATION
 			function initialisation() {
-			
-				
-				// Secteur
-				var secteurs_array = ["Discovery Bay", "Peng Chau / Cheung Chau", "Lamma", "Southern District", "Sai Kung", "Tai Long Wan"];
+			/*
 				document.getElementById("secteur").innerHTML = secteurs_array[localStorage.getItem("secteur")];
-								
 				
-
+				document.getElementById("masse_totale").innerHTML = get_masse(0);
+				document.getElementById("masse_secteur_1").innerHTML = get_masse(1);
+				document.getElementById("masse_secteur_2").innerHTML = get_masse(2);
+				document.getElementById("masse_secteur_3").innerHTML = get_masse(3);
+				document.getElementById("masse_secteur_4").innerHTML = get_masse(4);
+				document.getElementById("masse_secteur_5").innerHTML = get_masse(5);
+				document.getElementById("masse_secteur_6").innerHTML = get_masse(6);
+				*/
+				get_masse(1);
 			}	
 		</script>		
 	
@@ -71,7 +74,7 @@
 					
 					<table>
 						<tr>
-							<td class="secteur">DICOVERY BAY / LANTAU SUD</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
+							<td class="secteur">DICOVERY BAY / LANTAU SUD</td><td class="masse_secteur"><span id="masse_secteur_1"></span> kg<br />1 kg / pers</td>
 						</tr>					
 						<tr>
 							<td class="secteur">PENG CHAU / PENG CHAU</td><td class="masse_secteur">10 kg<br />1 kg / pers</td>
